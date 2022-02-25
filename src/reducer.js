@@ -11,6 +11,10 @@ export const getBasketTotal = (basket) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_BASKET":
+      while (state.basket.some((item) => (item.id === action.item.id))) {
+        action.item.id += "1";
+      }
+
       return {
         ...state,
         basket: [...state.basket, action.item],
